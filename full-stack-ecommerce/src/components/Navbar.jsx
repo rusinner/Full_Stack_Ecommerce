@@ -5,6 +5,9 @@ import Badge from "@mui/material/Badge";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 const Container = styled.div`
   height: 60px;
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const Wrapper = styled.div`

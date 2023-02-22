@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { sliderItems } from "../data";
 
 const Container = styled.div`
   width: 100%;
@@ -9,10 +10,14 @@ const Container = styled.div`
   display: flex;
   margin-top: 10px;
   position: relative;
+  overflow: hidden;
 `;
 
 const Wrapper = styled.div`
   height: 100%;
+  display: flex;
+  transform: translateX(${(props) => props.slideIndex * -100}vw);
+  transition: 0.5s ease;
 `;
 
 const Arrow = styled.div`
@@ -30,6 +35,7 @@ const Arrow = styled.div`
   margin: auto;
   margin-left: ${(props) => (props.direction === "left" ? "3vw" : "93vw")};
   opacity: 0.5;
+  z-index: 2;
 `;
 
 const SlideContainer = styled.div`
@@ -37,6 +43,7 @@ const SlideContainer = styled.div`
   height: 100vh;
   display: flex;
   align-items: center;
+  background-color: #${(props) => props.bg};
 `;
 const ImageContainer = styled.div`
   flex: 1;
@@ -45,11 +52,14 @@ const ImageContainer = styled.div`
 
 const Image = styled.img`
   height: 80%;
+  width: 60vw;
+  object-fit: cover;
 `;
 
 const InfoContainer = styled.div`
   flex: 1;
   padding: 50px;
+  width: 30vw;
 `;
 
 const Title = styled.h1`
@@ -63,29 +73,48 @@ const Description = styled.p`
   letter-spacing: 3px;
 `;
 
-const Button = styled.button``;
+const Button = styled.button`
+  padding: 10px;
+  font-size: 20px;
+  background-color: transparent;
+  cursor: pointer;
+  &:hover {
+    background-color: teal;
+    color: white;
+    border: 2px solid teal;
+    transition: 0.5s ease;
+  }
+`;
 
 const Slider = () => {
+  const [slideIndex, setSlideIndex] = useState(0);
+  const handleClick = (direction) => {
+    if (direction === "left") {
+      setSlideIndex(slideIndex > 0 ? slideIndex - 1 : sliderItems.length - 1);
+    } else {
+      setSlideIndex(slideIndex < sliderItems.length - 1 ? slideIndex + 1 : 0);
+    }
+  };
   return (
     <Container>
-      <Arrow direction="left">
+      <Arrow direction="left" onClick={() => handleClick("left")}>
         <ArrowBackIosIcon style={{ marginLeft: "6px" }} />
       </Arrow>
-      <Wrapper>
-        <SlideContainer>
-          <ImageContainer>
-            <Image src="https://cdn.pixabay.com/photo/2017/08/01/11/48/woman-2564660_960_720.jpg" />
-          </ImageContainer>
-          <InfoContainer>
-            <Title>SUMMER SALES</Title>
-            <Description>
-              DON'T COMPROMISE ON STYLE ! GET 40% OFF FOR NEW ARRIVALS
-            </Description>
-            <Button>SHOP NOW</Button>
-          </InfoContainer>
-        </SlideContainer>
+      <Wrapper slideIndex={slideIndex}>
+        {sliderItems.map((item) => (
+          <SlideContainer key={item.id} bg={item.bg}>
+            <ImageContainer>
+              <Image src={item.img} />
+            </ImageContainer>
+            <InfoContainer>
+              <Title>{item.title}</Title>
+              <Description>{item.desc}</Description>
+              <Button>SHOP NOW</Button>
+            </InfoContainer>
+          </SlideContainer>
+        ))}
       </Wrapper>
-      <Arrow>
+      <Arrow onClick={() => handleClick("right")}>
         <ArrowForwardIosIcon />
       </Arrow>
     </Container>
