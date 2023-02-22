@@ -6,3 +6,4 @@ export { default as CategoryItem } from "./CategoryItem";
 export { default as Products } from "./Products";
 export { default as Product } from "./Product";
 export { default as Newsletter } from "./Newsletter";
+export { default as Footer } from "./Footer";
