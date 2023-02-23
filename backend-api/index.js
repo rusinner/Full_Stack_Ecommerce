@@ -16,9 +16,11 @@ mongoose.connect(process.env.MONGO_URL, () => {
 
 //create endpoints (routes)
 const userRoute = require("./routes/users");
+const authRoute = require("./routes/auth");
 
 app.use(express.json());
 app.use("/api/users", userRoute);
+app.use("/api/auth", authRoute);
 
 //connect to port
 app.listen(process.env.PORT || 5000, () => {
