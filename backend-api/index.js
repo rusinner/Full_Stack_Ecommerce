@@ -17,10 +17,12 @@ mongoose.connect(process.env.MONGO_URL, () => {
 //create endpoints (routes)
 const userRoute = require("./routes/users");
 const authRoute = require("./routes/auth");
+const productRoute = require("./routes/product");
 
 app.use(express.json());
 app.use("/api/users", userRoute);
 app.use("/api/auth", authRoute);
+app.use("/api/products", productRoute);
 
 //connect to port
 app.listen(process.env.PORT || 5000, () => {
