@@ -1,7 +1,17 @@
 const mongoose = require("mongoose");
-//create schema
+
 const OrderSchema = new mongoose.Schema({
   userId: { type: String, required: true },
+  createdAt: {
+    type: Date,
+    required: true,
+    default: Date.now,
+  },
+  updatedAt: {
+    type: Date,
+    required: true,
+    default: Date.now,
+  },
   products: [
     {
       productId: {
@@ -13,19 +23,8 @@ const OrderSchema = new mongoose.Schema({
       },
     },
   ],
-  createdAt: {
-    type: Date,
-    required: true,
-    default: Date.now,
-  },
-  updatedAt: {
-    type: Date,
-    required: true,
-    default: Date.now,
-  },
   amount: { type: Number, required: true },
-  //address is gonna be object because Stripe after Checkout returns an object
-  adddress: { type: Object, required: true },
+  address: { type: Object, required: true },
   status: { type: String, default: "pending" },
 });
 
