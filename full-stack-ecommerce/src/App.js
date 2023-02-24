@@ -4,7 +4,7 @@ import { Home, ProductList, Product, Register, Login, Cart } from "./pages";
 function App() {
   return (
     <div>
-      <Home />
+      <Cart />
     </div>
   );
 }

@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Announcement, Footer, Navbar } from "../components";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { mobile } from "../responsive";
+import StripeCheckout from "react-stripe-checkout";
 
 const Container = styled.div``;
 
@@ -159,6 +160,10 @@ const Button = styled.button`
 `;
 
 const Cart = () => {
+  //stripe token function
+  const onToken = (token) => {
+    console.log(token);
+  };
   return (
     <Container>
       <Announcement />
@@ -245,7 +250,18 @@ const Cart = () => {
               <SummaryItemText>Total</SummaryItemText>
               <SummaryItemPrice>$ 80</SummaryItemPrice>
             </SummaryItem>
-            <Button>CHECKOUT NOW</Button>
+            <StripeCheckout
+              name="EverStore"
+              image="https://images.unsplash.com/photo-1661956602944-249bcd04b63f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxzZWFyY2h8MXx8ZSUyMGNvbW1lcmNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=1000&q=60"
+              billingAddress
+              shippingAddress
+              description="Your Total is 20 €"
+              amount={2000}
+              token={onToken}
+              stripeKey={process.env.REACT_APP_STRIPE_KEY}
+            >
+              <Button>CHECKOUT NOW</Button>
+            </StripeCheckout>
           </Summary>
         </Bottom>
       </Wrapper>
