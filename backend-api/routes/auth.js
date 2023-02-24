@@ -29,4 +29,27 @@ router.post("/register", async (req, res) => {
 
 //LOGIN
 
+router.post("/login", async (req, res) => {
+  //find user from DB
+  try {
+    const user = await User.findOne({ username: req.body.username });
+    !user && res.status(401).json("Wrong Credentials!");
+    //decrypt password
+    const hashedPassword = CryptoJS.AES.decrypt(
+      user.password,
+      process.env.PASS_SECRET
+    );
+    const OriginalPassword = hashedPassword.toString(CryptoJS.enc.Utf8);
+    OriginalPassword !== req.body.password &&
+      res.status(401).json("Wrong Credentials!");
+    //send all info to database except from password for security reasons
+    //._doc is only beacuse of mongoDB stores data in this file
+    const { password, ...others } = user._doc;
+
+    res.status(200).json(others);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
 module.exports = router;
