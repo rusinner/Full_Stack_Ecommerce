@@ -3,6 +3,8 @@ const router = require("express").Router();
 const User = require("../models/User");
 //encrypted password in DB library
 const CryptoJS = require("crypto-js");
+//JSON WebToken
+const jwt = require("jsonwebtoken");
 
 //register means send this model to DB
 router.post("/register", async (req, res) => {
@@ -42,11 +44,22 @@ router.post("/login", async (req, res) => {
     const OriginalPassword = hashedPassword.toString(CryptoJS.enc.Utf8);
     OriginalPassword !== req.body.password &&
       res.status(401).json("Wrong Credentials!");
+
+    //create JWT
+    const accessToken = jwt.sign(
+      {
+        id: user._id,
+        isAdmin: user.isAdmin,
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: "3d" }
+    );
+
     //send all info to database except from password for security reasons
     //._doc is only beacuse of mongoDB stores data in this file
     const { password, ...others } = user._doc;
 
-    res.status(200).json(others);
+    res.status(200).json({ ...others, accessToken });
   } catch (error) {
     res.status(500).json(error);
   }
