@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Announcement, Footer, Navbar } from "../components";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { mobile } from "../responsive";
 import StripeCheckout from "react-stripe-checkout";
+import axios from "axios";
 
 const Container = styled.div``;
 
@@ -160,10 +161,33 @@ const Button = styled.button`
 `;
 
 const Cart = () => {
+  //send payment data to server
+
+  const [stripeToken, setstripeToken] = useState(null);
+
   //stripe token function
   const onToken = (token) => {
-    console.log(token);
+    setstripeToken(stripeToken);
   };
+  useEffect(() => {
+    const makeRequest = async () => {
+      try {
+        const res = await axios.post(
+          "http://localhost:5000/api/checkout/payment",
+          {
+            tokenId: stripeToken.id,
+            amount: 2000,
+          }
+        );
+        console.log(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    // eslint-disable-next-line no-unused-expressions
+    stripeToken && makeRequest;
+  }, [stripeToken]);
+
   return (
     <Container>
       <Announcement />
