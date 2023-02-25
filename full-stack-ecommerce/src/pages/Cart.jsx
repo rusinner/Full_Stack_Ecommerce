@@ -184,8 +184,7 @@ const Cart = () => {
         console.log(error);
       }
     };
-    // eslint-disable-next-line no-unused-expressions
-    stripeToken && makeRequest;
+    stripeToken && makeRequest();
   }, [stripeToken]);
 
   return (
@@ -274,6 +273,7 @@ const Cart = () => {
               <SummaryItemText>Total</SummaryItemText>
               <SummaryItemPrice>$ 80</SummaryItemPrice>
             </SummaryItem>
+
             <StripeCheckout
               name="EverStore"
               image="https://images.unsplash.com/photo-1661956602944-249bcd04b63f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxzZWFyY2h8MXx8ZSUyMGNvbW1lcmNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=1000&q=60"
