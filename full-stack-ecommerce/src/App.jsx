@@ -1,5 +1,13 @@
 import "./App.css";
-import { Home, ProductList, Product, Register, Login, Cart } from "./pages";
+import {
+  Home,
+  ProductList,
+  Product,
+  Register,
+  Login,
+  Cart,
+  Success,
+} from "./pages";
 import {
   BrowserRouter as Router,
   Routes,
@@ -18,6 +26,7 @@ function App() {
           <Route path="/products/:category" element={<ProductList />} />
           <Route path="/product/:id" element={<Product />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/success" element={<Success />} />
           <Route
             path="/login"
             element={user ? <Navigate replace to="/" /> : <Login />}
