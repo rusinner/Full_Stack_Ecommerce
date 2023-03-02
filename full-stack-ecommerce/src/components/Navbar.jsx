@@ -6,6 +6,7 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { mobile, tablet } from "../responsive";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+
 const Container = styled.div`
   height: 60px;
   ${mobile({ height: "50px" })}
@@ -74,7 +75,6 @@ const MenuItem = styled.div`
 
 const Navbar = () => {
   const quantity = useSelector((state) => state.cart.quantity);
-
   return (
     <Container>
       <Wrapper>

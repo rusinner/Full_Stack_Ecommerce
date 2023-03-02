@@ -5,9 +5,11 @@ import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { mobile } from "../responsive";
 import StripeCheckout from "react-stripe-checkout";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { userRequest } from "../requestMethod";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { addProduct } from "../redux/cartRedux";
 
 const Container = styled.div``;
 
@@ -198,7 +200,10 @@ const Cart = () => {
       <Wrapper>
         <Title>YOUR BAG</Title>
         <Top>
-          <TopButton>CONTINUE SHOPPING</TopButton>
+          <Link to="/">
+            <TopButton>CONTINUE SHOPPING</TopButton>
+          </Link>
+
           <TopTexts>
             <TopText>Shopping Bag(2)</TopText>
             <TopText>Your Wishlist (0)</TopText>

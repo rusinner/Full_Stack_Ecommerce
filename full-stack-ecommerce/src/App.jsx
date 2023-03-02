@@ -19,6 +19,8 @@ import { useSelector } from "react-redux";
 function App() {
   //take user from redux
   const user = useSelector((state) => state.user.currentUser);
+  const cart = useSelector((state) => state.cart);
+
   return (
     <div>
       <Router>
@@ -27,7 +29,10 @@ function App() {
           <Route path="/products" element={<ProductList />} />
           <Route path="/products/:category" element={<ProductList />} />
           <Route path="/product/:id" element={<Product />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route
+            path="/cart"
+            element={cart ? <Cart /> : <Navigate replace to="/" />}
+          />
           <Route path="/success" element={<Success />} />
           <Route
             path="/login"
