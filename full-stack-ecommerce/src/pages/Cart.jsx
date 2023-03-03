@@ -9,7 +9,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { userRequest } from "../requestMethod";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { addProduct } from "../redux/cartRedux";
+import removeProduct from "../redux/cartRedux";
+import CloseIcon from "@mui/icons-material/Close";
 
 const Container = styled.div``;
 
@@ -75,10 +76,10 @@ const Image = styled.img`
 `;
 
 const Details = styled.div`
-  padding: 20px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
 `;
 
 const ProductName = styled.span``;
@@ -168,6 +169,7 @@ const Button = styled.button`
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
 
   //send payment data to server
 
@@ -193,6 +195,9 @@ const Cart = () => {
     stripeToken && cart.total >= 1 && makeRequest();
   }, [stripeToken, cart.total, navigate, cart]);
 
+  const handleRemove = () => {
+    dispatch(removeProduct());
+  };
   return (
     <Container>
       <Announcement />
@@ -217,6 +222,10 @@ const Cart = () => {
                 <ProductDetail>
                   <Image src={product.img} />
                   <Details>
+                    <CloseIcon
+                      style={{ marginTop: "-10px", cursor: "pointer" }}
+                      onClick={handleRemove}
+                    />
                     <ProductName>
                       <b>Product:</b> {product.title}
                     </ProductName>
