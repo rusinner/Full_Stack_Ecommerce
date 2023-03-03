@@ -95,8 +95,22 @@ const Navbar = () => {
           <Logo>EVERSTORE.</Logo>
         </Center>
         <Right>
-          <MenuItem>REGISTER</MenuItem>
-          <MenuItem>SIGN IN</MenuItem>
+          <MenuItem>
+            <a
+              style={{ textDecoration: "none", color: "inherit" }}
+              href="/register"
+            >
+              REGISTER
+            </a>
+          </MenuItem>
+          <MenuItem>
+            <a
+              style={{ textDecoration: "none", color: "inherit" }}
+              href="/login"
+            >
+              SIGN IN
+            </a>
+          </MenuItem>
           <Link to="/cart">
             <MenuItem>
               <Badge badgeContent={quantity} color="primary">

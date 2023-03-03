@@ -8,7 +8,6 @@ import StripeCheckout from "react-stripe-checkout";
 import { useSelector, useDispatch } from "react-redux";
 import { userRequest } from "../requestMethod";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
 import CloseIcon from "@mui/icons-material/Close";
 import { clearCart, decrease, increase, remove } from "../redux/cartRedux";
 
@@ -202,10 +201,7 @@ const Cart = () => {
       <Wrapper>
         <Title>YOUR BAG</Title>
         <Top>
-          <Link to="/">
-            <TopButton>CONTINUE SHOPPING</TopButton>
-          </Link>
-
+          <TopButton onClick={() => navigate(-2)}>CONTINUE SHOPPING</TopButton>
           <TopTexts>
             <TopText>Shopping Bag(2)</TopText>
             <TopText>Your Wishlist (0)</TopText>
@@ -275,7 +271,6 @@ const Cart = () => {
             <SummaryItem type="total">
               <SummaryItemText>Total</SummaryItemText>
               <SummaryItemPrice>
-                {" "}
                 {cart.total > 20 ? cart.total - 5.9 : 0} €
               </SummaryItemPrice>
             </SummaryItem>
@@ -285,7 +280,9 @@ const Cart = () => {
               image="https://images.unsplash.com/photo-1661956602944-249bcd04b63f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxzZWFyY2h8MXx8ZSUyMGNvbW1lcmNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=1000&q=60"
               billingAddress
               shippingAddress
-              description={`Your Total is  ${cart.total} €`}
+              description={`Your Total is  ${
+                cart.total > 20 ? cart.total - 5.9 : 0
+              } €`}
               amount={cart.total * 100}
               token={onToken}
               stripeKey={process.env.REACT_APP_STRIPE_KEY}
