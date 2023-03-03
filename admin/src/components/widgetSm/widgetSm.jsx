@@ -1,7 +1,7 @@
 import React from "react";
 
-const widgetSm = () => {
+const WidgetSm = () => {
   return <div>widgetSm</div>;
 };
 
-export default widgetSm;
+export default WidgetSm;
