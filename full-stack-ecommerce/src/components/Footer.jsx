@@ -8,6 +8,7 @@ import MapIcon from "@mui/icons-material/Map";
 import PhoneIcon from "@mui/icons-material/Phone";
 import MailOutlineOutlinedIcon from "@mui/icons-material/MailOutlineOutlined";
 import { mobile } from "../responsive";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
@@ -60,9 +61,11 @@ const List = styled.ul`
   flex-wrap: wrap;
 `;
 
-const ListItem = styled.li`
+const ListItem = styled(Link)`
   width: 50%;
   margin-bottom: 10px;
+  text-decoration: none;
+  color: inherit;
 `;
 
 const ContactItem = styled.div`
@@ -87,46 +90,91 @@ const Footer = () => {
         </Description>
         <SocialContainer>
           <SocialIcon color="3b5999">
-            <FacebookIcon />
+            <a
+              style={{ textDecoration: "none", color: "inherit" }}
+              href="https://www.facebook.com"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <FacebookIcon />
+            </a>
           </SocialIcon>
           <SocialIcon color="e4405f">
-            <InstagramIcon />
+            <a
+              style={{ textDecoration: "none", color: "inherit" }}
+              href="https://www.instagram.com"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <InstagramIcon />
+            </a>
           </SocialIcon>
           <SocialIcon color="55acee">
-            <TwitterIcon />
+            <a
+              style={{ textDecoration: "none", color: "inherit" }}
+              href="https://www.twitter.com"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <TwitterIcon />
+            </a>
           </SocialIcon>
           <SocialIcon color="e60023">
-            <PinterestIcon />
+            <a
+              style={{ textDecoration: "none", color: "inherit" }}
+              href="https://www.pinterest.com"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <PinterestIcon />
+            </a>
           </SocialIcon>
         </SocialContainer>
       </Left>
       <Center>
         <Title>Useful Links</Title>
         <List>
-          <ListItem>Home</ListItem>
-          <ListItem>Cart</ListItem>
-          <ListItem>Man Fashion</ListItem>
-          <ListItem>Woman Fashion</ListItem>
-          <ListItem>Accessories</ListItem>
-          <ListItem>My Account</ListItem>
-          <ListItem>Order Tracking</ListItem>
-          <ListItem>Wishlist</ListItem>
-          <ListItem>Wishlist</ListItem>
-          <ListItem>Terms</ListItem>
+          <ListItem to="/">Home</ListItem>
+          <ListItem to="/cart">Cart</ListItem>
+          <ListItem to="/products/man">Man Fashion</ListItem>
+          <ListItem to="/products/kid">Kids Fashion</ListItem>
+          <ListItem to="/products/accessories">Accessories</ListItem>
+          <ListItem to="/account">My Account</ListItem>
+          <ListItem to="/orderTracking">Order Tracking</ListItem>
+          <ListItem to="/wishlist">Wishlist</ListItem>
+          <ListItem to="/terms">Terms</ListItem>
         </List>
       </Center>
       <Right>
         <Title>Contact</Title>
         <ContactItem>
-          <MapIcon style={{ marginRight: "10px" }} /> 622 Dixie Path , South
-          Tobinchester 98336
+          <MapIcon style={{ marginRight: "10px" }} />
+          <a
+            style={{ textDecoration: "none", color: "inherit" }}
+            href="https://goo.gl/maps/vxMEzbARgffuTEU48"
+            target="_blank"
+            rel="noreferrer"
+          >
+            W Houston St, New York, NY 10012, USA
+          </a>
         </ContactItem>
         <ContactItem>
-          <PhoneIcon style={{ marginRight: "10px" }} /> +1 234 56 78
+          <PhoneIcon style={{ marginRight: "10px" }} />
+          <a
+            style={{ textDecoration: "none", color: "inherit" }}
+            href="tel:+1 234 56 78"
+          >
+            +1 234 56 78
+          </a>
         </ContactItem>
         <ContactItem>
-          <MailOutlineOutlinedIcon style={{ marginRight: "10px" }} />{" "}
-          contact@everstore.dev
+          <MailOutlineOutlinedIcon style={{ marginRight: "10px" }} />
+          <a
+            style={{ textDecoration: "none", color: "inherit" }}
+            href="mailto:contact@everstore.dev"
+          >
+            contact@everstore.dev
+          </a>
         </ContactItem>
         <Payment src="https://i.ibb.co/Qfvn4z6/payment.png" />
       </Right>
