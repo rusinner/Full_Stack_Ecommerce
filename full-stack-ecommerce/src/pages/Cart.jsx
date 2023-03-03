@@ -9,8 +9,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { userRequest } from "../requestMethod";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import removeProduct from "../redux/cartRedux";
 import CloseIcon from "@mui/icons-material/Close";
+import { clearCart, decrease, increase, remove } from "../redux/cartRedux";
 
 const Container = styled.div``;
 
@@ -195,9 +195,6 @@ const Cart = () => {
     stripeToken && cart.total >= 1 && makeRequest();
   }, [stripeToken, cart.total, navigate, cart]);
 
-  const handleRemove = () => {
-    dispatch(removeProduct());
-  };
   return (
     <Container>
       <Announcement />
@@ -213,7 +210,9 @@ const Cart = () => {
             <TopText>Shopping Bag(2)</TopText>
             <TopText>Your Wishlist (0)</TopText>
           </TopTexts>
-          <TopButton type="filled">CHECKOUT NOW</TopButton>
+          <TopButton type="filled" onClick={() => dispatch(clearCart())}>
+            CLEAR CART
+          </TopButton>
         </Top>
         <Bottom>
           <Info>
@@ -224,7 +223,11 @@ const Cart = () => {
                   <Details>
                     <CloseIcon
                       style={{ marginTop: "-10px", cursor: "pointer" }}
-                      onClick={handleRemove}
+                      onClick={() =>
+                        dispatch(
+                          remove(product._id && product.size && product.color)
+                        )
+                      }
                     />
                     <ProductName>
                       <b>Product:</b> {product.title}
@@ -241,9 +244,11 @@ const Cart = () => {
                 </ProductDetail>
                 <PriceDetail>
                   <ProductAmountContainer>
-                    <AddIcon />
+                    <AddIcon onClick={() => dispatch(increase(product._id))} />
                     <ProductAmount>{product.quantity}</ProductAmount>
-                    <RemoveIcon />
+                    <RemoveIcon
+                      onClick={() => dispatch(decrease(product._id))}
+                    />
                   </ProductAmountContainer>
                   <ProductPrice>
                     {product.price * product.quantity} €
@@ -269,7 +274,10 @@ const Cart = () => {
             </SummaryItem>
             <SummaryItem type="total">
               <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice> {cart.total} €</SummaryItemPrice>
+              <SummaryItemPrice>
+                {" "}
+                {cart.total > 20 ? cart.total - 5.9 : 0} €
+              </SummaryItemPrice>
             </SummaryItem>
 
             <StripeCheckout
