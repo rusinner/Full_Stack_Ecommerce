@@ -1,7 +1,13 @@
 import React from "react";
+import { FeaturedInfo } from "../../components";
+import "./home.css";
 
 const Home = () => {
-  return <div></div>;
+  return (
+    <div className="home">
+      <FeaturedInfo />
+    </div>
+  );
 };
 
 export default Home;
