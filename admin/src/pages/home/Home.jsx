@@ -1,5 +1,10 @@
 import React from "react";
-import { FeaturedInfo, PaskooloGraph } from "../../components";
+import {
+  FeaturedInfo,
+  PaskooloGraph,
+  WidgetLg,
+  WidgetSm,
+} from "../../components";
 import { userData } from "../../components/paskooloGraph/dummyData";
 import "./home.css";
 
@@ -13,7 +18,10 @@ const Home = () => {
         grid
         dataKey="ActiveUser"
       />
-      <div className="homeWidgets"></div>
+      <div className="homeWidgets">
+        <WidgetSm />
+        <WidgetLg />
+      </div>
     </div>
   );
 };
