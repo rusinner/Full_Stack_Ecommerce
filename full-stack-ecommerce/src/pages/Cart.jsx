@@ -8,9 +8,8 @@ import StripeCheckout from "react-stripe-checkout";
 import { useSelector, useDispatch } from "react-redux";
 import { userRequest } from "../requestMethod";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
-import removeProduct from "../redux/cartRedux";
 import CloseIcon from "@mui/icons-material/Close";
+import { clearCart, decrease, increase, remove } from "../redux/cartRedux";
 
 const Container = styled.div``;
 
@@ -195,9 +194,6 @@ const Cart = () => {
     stripeToken && cart.total >= 1 && makeRequest();
   }, [stripeToken, cart.total, navigate, cart]);
 
-  const handleRemove = () => {
-    dispatch(removeProduct());
-  };
   return (
     <Container>
       <Announcement />
@@ -205,15 +201,14 @@ const Cart = () => {
       <Wrapper>
         <Title>YOUR BAG</Title>
         <Top>
-          <Link to="/">
-            <TopButton>CONTINUE SHOPPING</TopButton>
-          </Link>
-
+          <TopButton onClick={() => navigate(-2)}>CONTINUE SHOPPING</TopButton>
           <TopTexts>
             <TopText>Shopping Bag(2)</TopText>
             <TopText>Your Wishlist (0)</TopText>
           </TopTexts>
-          <TopButton type="filled">CHECKOUT NOW</TopButton>
+          <TopButton type="filled" onClick={() => dispatch(clearCart())}>
+            CLEAR CART
+          </TopButton>
         </Top>
         <Bottom>
           <Info>
@@ -224,7 +219,11 @@ const Cart = () => {
                   <Details>
                     <CloseIcon
                       style={{ marginTop: "-10px", cursor: "pointer" }}
-                      onClick={handleRemove}
+                      onClick={() =>
+                        dispatch(
+                          remove(product._id && product.size && product.color)
+                        )
+                      }
                     />
                     <ProductName>
                       <b>Product:</b> {product.title}
@@ -241,9 +240,11 @@ const Cart = () => {
                 </ProductDetail>
                 <PriceDetail>
                   <ProductAmountContainer>
-                    <AddIcon />
+                    <AddIcon onClick={() => dispatch(increase(product._id))} />
                     <ProductAmount>{product.quantity}</ProductAmount>
-                    <RemoveIcon />
+                    <RemoveIcon
+                      onClick={() => dispatch(decrease(product._id))}
+                    />
                   </ProductAmountContainer>
                   <ProductPrice>
                     {product.price * product.quantity} €
@@ -269,7 +270,9 @@ const Cart = () => {
             </SummaryItem>
             <SummaryItem type="total">
               <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice> {cart.total} €</SummaryItemPrice>
+              <SummaryItemPrice>
+                {cart.total > 20 ? cart.total - 5.9 : 0} €
+              </SummaryItemPrice>
             </SummaryItem>
 
             <StripeCheckout
@@ -277,7 +280,9 @@ const Cart = () => {
               image="https://images.unsplash.com/photo-1661956602944-249bcd04b63f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxzZWFyY2h8MXx8ZSUyMGNvbW1lcmNlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=1000&q=60"
               billingAddress
               shippingAddress
-              description={`Your Total is  ${cart.total} €`}
+              description={`Your Total is  ${
+                cart.total > 20 ? cart.total - 5.9 : 0
+              } €`}
               amount={cart.total * 100}
               token={onToken}
               stripeKey={process.env.REACT_APP_STRIPE_KEY}
