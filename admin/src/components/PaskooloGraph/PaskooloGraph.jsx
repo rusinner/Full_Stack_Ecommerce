@@ -1,6 +1,6 @@
 import React from "react";
 import "./paskooloGraph.css";
-import { userData } from "./dummyData";
+
 import {
   LineChart,
   Line,

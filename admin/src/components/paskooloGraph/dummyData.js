@@ -1,3 +1,4 @@
+//graph data for home page graph
 export const userData = [
   {
     name: "Jan",
@@ -46,5 +47,99 @@ export const userData = [
   {
     name: "Dec",
     ActiveUser: 9000,
+  },
+];
+
+//rows for UseList component table
+export const rows = [
+  {
+    id: 1,
+    username: "Client",
+    avatar:
+      "https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_960_720.png",
+    email: "username@gmail.com",
+    status: "active",
+    transaction: "120 €",
+  },
+  {
+    id: 2,
+    username: "Client",
+    avatar:
+      "https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_960_720.png",
+    email: "username@gmail.com",
+    status: "active",
+    transaction: "120 €",
+  },
+  {
+    id: 3,
+    username: "Client",
+    avatar:
+      "https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_960_720.png",
+    email: "username@gmail.com",
+    status: "active",
+    transaction: "120 €",
+  },
+  {
+    id: 4,
+    username: "Client",
+    avatar:
+      "https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_960_720.png",
+    email: "username@gmail.com",
+    status: "active",
+    transaction: "120 €",
+  },
+  {
+    id: 5,
+    username: "Client",
+    avatar:
+      "https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_960_720.png",
+    email: "username@gmail.com",
+    status: "active",
+    transaction: "120 €",
+  },
+  {
+    id: 6,
+    username: "Client",
+    avatar:
+      "https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_960_720.png",
+    email: "username@gmail.com",
+    status: "active",
+    transaction: "120 €",
+  },
+  {
+    id: 7,
+    username: "Client",
+    avatar:
+      "https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_960_720.png",
+    email: "username@gmail.com",
+    status: "active",
+    transaction: "120 €",
+  },
+  {
+    id: 8,
+    username: "Client",
+    avatar:
+      "https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_960_720.png",
+    email: "username@gmail.com",
+    status: "active",
+    transaction: "120 €",
+  },
+  {
+    id: 9,
+    username: "Client",
+    avatar:
+      "https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_960_720.png",
+    email: "username@gmail.com",
+    status: "active",
+    transaction: "120 €",
+  },
+  {
+    id: 10,
+    username: "Client",
+    avatar:
+      "https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_960_720.png",
+    email: "username@gmail.com",
+    status: "active",
+    transaction: "120 €",
   },
 ];
