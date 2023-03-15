@@ -6,6 +6,7 @@ import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import ContactPhoneIcon from "@mui/icons-material/ContactPhone";
 import EmailIcon from "@mui/icons-material/Email";
 import HomeIcon from "@mui/icons-material/Home";
+import PublishIcon from "@mui/icons-material/Publish";
 
 const User = () => {
   return (
@@ -56,7 +57,67 @@ const User = () => {
             </div>
           </div>
         </div>
-        <div className="userUpdate"></div>
+        <div className="userUpdate">
+          <span className="userUpdateTitle">Edit</span>
+          <form className="userUpdateForm">
+            <div className="userUpdateLeft">
+              <div className="userUpdateItem">
+                <label>Username</label>
+                <input
+                  type="text"
+                  placeholder="JimDove23"
+                  className="userUpdateInput"
+                />
+              </div>
+              <div className="userUpdateItem">
+                <label>Full Name</label>
+                <input
+                  type="text"
+                  placeholder="Jim Dove"
+                  className="userUpdateInput"
+                />
+              </div>
+              <div className="userUpdateItem">
+                <label>Email</label>
+                <input
+                  type="text"
+                  placeholder="jimdove@gmail.com"
+                  className="userUpdateInput"
+                />
+              </div>
+              <div className="userUpdateItem">
+                <label>Phone</label>
+                <input
+                  type="text"
+                  placeholder="+123 456 789"
+                  className="userUpdateInput"
+                />
+              </div>
+              <div className="userUpdateItem">
+                <label>Address</label>
+                <input
+                  type="text"
+                  placeholder="45 Skoop Street New Orleans, USA"
+                  className="userUpdateInput"
+                />
+              </div>
+            </div>
+            <div className="userUpdateRight">
+              <div className="userUpdateUpload">
+                <img
+                  className="userUpdateImg"
+                  src="https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_960_720.png"
+                  alt="user update"
+                />
+                <label htmlFor="file">
+                  <PublishIcon className="userUpdateIcon" />
+                </label>
+                <input type="file" id="file" style={{ display: "none" }} />
+              </div>
+              <button className="userUpdateButton">Update</button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );
