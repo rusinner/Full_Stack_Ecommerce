@@ -127,7 +127,8 @@
   border-radius: 5px;
   padding: 5px;
   cursor: pointer;
-  background-color: darkblue;
+  background-color: rgb(232, 92, 197);
+  color: white;
   color: white;
   font-weight: bold;
 }

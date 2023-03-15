@@ -12,6 +12,7 @@ import DynamicFeedIcon from "@mui/icons-material/DynamicFeed";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
 import ReportIcon from "@mui/icons-material/Report";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   return (
@@ -20,9 +21,11 @@ const Sidebar = () => {
         <div className="sidebarmenu">
           <h3 className="sidebarTitle">Dashboard</h3>
           <ul className="sidebarList">
-            <li className="sidebarListItem">
-              <LineStyleIcon className="sidebarIcon" /> Home
-            </li>
+            <Link style={{ textDecoration: "none", color: "inherit" }} to="/">
+              <li className="sidebarListItem">
+                <LineStyleIcon className="sidebarIcon" /> Home
+              </li>
+            </Link>
             <li className="sidebarListItem">
               <TimelineIcon className="sidebarIcon" /> Analytics
             </li>
@@ -34,15 +37,26 @@ const Sidebar = () => {
         <div className="sidebarmenu">
           <h3 className="sidebarTitle">Quick Menu</h3>
           <ul className="sidebarList">
-            <li className="sidebarListItem">
-              <PermIdentityIcon className="sidebarIcon" /> Users
-            </li>
-            <li className="sidebarListItem">
-              <StorefrontIcon className="sidebarIcon" /> Products
-            </li>
+            <Link
+              style={{ textDecoration: "none", color: "inherit" }}
+              to="/users"
+            >
+              <li className="sidebarListItem">
+                <PermIdentityIcon className="sidebarIcon" /> Users
+              </li>
+            </Link>
+            <Link
+              to="/products"
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              <li className="sidebarListItem">
+                <StorefrontIcon className="sidebarIcon" /> Products
+              </li>
+            </Link>
             <li className="sidebarListItem">
               <AttachMoneyIcon className="sidebarIcon" /> Transactions
             </li>
+
             <li className="sidebarListItem">
               <BarChartIcon className="sidebarIcon" /> Reports
             </li>
