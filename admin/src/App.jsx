@@ -8,26 +8,31 @@ import {
   ProductList,
   NewProduct,
   Product,
+  Login,
 } from "./pages";
 import "./app.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
+  const isLoggedIn = true;
   return (
     <Router>
-      <Topbar />
-      <div className="container">
-        <Sidebar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/users" element={<UserList />} />
-          <Route path="/user/:userId" element={<User />} />
-          <Route path="/newUser" element={<NewUser />} />
-          <Route path="/products" element={<ProductList />} />
-          <Route path="/product/:productId" element={<Product />} />
-          <Route path="/newProduct" element={<NewProduct />} />
-        </Routes>
-      </div>
+      <>
+        <Topbar />
+        <div className="container">
+          <Sidebar />
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/users" element={<UserList />} />
+            <Route path="/user/:userId" element={<User />} />
+            <Route path="/newUser" element={<NewUser />} />
+            <Route path="/products" element={<ProductList />} />
+            <Route path="/product/:productId" element={<Product />} />
+            <Route path="/newProduct" element={<NewProduct />} />
+          </Routes>
+        </div>
+      </>
     </Router>
   );
 }
